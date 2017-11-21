@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Mr.Pantomime</string>
+    <string name="pravila_igre"><b><i>PRAVILA IGRE</i></b></string>
+    <string name="tvTeam1_text">Ekipa 1</string>
+    <string name="pravila2">" <b><i>BODOVANJE</i></b> Svaka pogođena riječ boduje se sa jednim bodom, cilj je što prije
+        pogoditi tj. pokazati suigračima prikazane riječi, jer svakih preostalih 20 sekundi nosi 1 bod više.   <b><i>VRIJEME</i></b> Kada
+        se pogodi svih 5 riječi vrijeme stane, pritiskom na gumb \"DALJE\", zbroje se bonus bodovi preostalog vremena sa
+        ukupnim rezultatom.  <b><i>POBJEDNIK</i></b> Pobjednik je onaj koji prvi dođe do postavljenog rezultata uzimajući u obzir da ekipa 1
+        uvijek prva kreće tako da ekipa 2 uvijek ima šansu za sustizanje <i>\"npr. igra se do 10, ekipa 1 odmah skupi maksimalnih 13 bodova,
+            naravno ekipa 2 će dobiti šansu da ih stigne\"</i>, ako je rezultat jednak, igraju se \"produžeci\", tj. zlatni gol, tko zadnju
+        rundu postigne više bodova, pobjeđuje.  <i>p.s. dok ovo čitate vrijeme vam teče</i> "</string>
+    <string name="pravila1">\n<b><i>BODOVANJE</i></b>\nSvaka pogođena riječ boduje se sa jednim bodom, cilj je što prije
+        pogoditi tj. pokazati suigračima prikazane riječi, jer svakih preostalih 20 sekundi nosi 1 bod više.\n \n<b><i>VRIJEME</i></b>\nKada
+        se pogodi svih 5 riječi vrijeme stane, pritiskom na gumb \"DALJE\", zbroje se bonus bodovi preostalog vremena sa
+    ukupnim rezultatom.\n\n<b><i>POBJEDNIK</i></b>\nPobjednik je onaj koji prvi dođe do postavljenog rezultata uzimajući u obzir da ekipa 1
+       uvijek prva kreće tako da ekipa 2 uvijek ima šansu za sustizanje <i>\"npr. igra se do 10, ekipa 1 odmah skupi maksimalnih 13 bodova,
+            naravno ekipa 2 će dobiti šansu da ih stigne\"</i>, ako je rezultat jednak, igraju se \"produžeci\", tj. \"zlatni gol\", tko zadnju
+        rundu postigne više bodova, pobjeđuje.</string>
+    <string name="ekipa1_pobjeda">Čestitamo Ekipi 1 na pobjedi</string>
+    <string name="chk_text">text</string>
+    <string name="tvTeam2_text">Ekipa 2</string>
+    <string name="tvTeam2Score_text">0</string>
+    <string name="tvTeam1Score_text">0</string>
+    <string name="tvClock_text">00:00</string>
+    <string name="btnNext_text">Dalje</string>
+    <string name="btnStart_text">Započnite</string>
+    <string name="btnStartToastMsg">Unesite broj od 10 do 60</string>
+    <string name="btnDialogClose_text">Zatvori</string>
+    <string name="etResult_hint">10 &#8212; 60</string>
+    <string name="tvTypeInResult_text">Upišite rezultat do kojeg želite igrati</string>
+    <string name="tvAppName_text">Mr. Pantomime</string>
+    <string name="tvClock_setText">00:00</string>
+    <string name="tvNoteTxt_congzTeam1Text">Čestitamo Ekipi 1 na pobjedi!</string>
+    <string name="tvNoteTxt_congzTeam2Txt">Čestitamo Ekipi 2 na pobjedi!</string>
+    <string name="tvNoteTxt_team2playingTxt">Na redu je Ekipa 2</string>
+    <string name="tvNoteTxt_team1playingTxt">Na redu je Ekipa 1</string>
+    <string name="onBackPressed_text">Izađite iz igre pritiskom na \"Home\" tipku!</string>
+</resources>

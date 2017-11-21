@@ -1,0 +1,34 @@
+<resources>
+    <string name="app_name">Mr.Pantomime</string>
+    <string name="pravila_igre"><b><i>PRAVILA IGRE</i></b></string>
+    <string name="chk_text">text</string>
+    <string name="tvTeam1_text">Ekipa 1</string>
+    <string name="pravila1">\n<b><i>BODOVANJE</i></b>\nSvaka pogođena riječ boduje se sa jednim bodom, cilj je što prije
+        pogoditi tj. pokazati suigračima prikazane riječi, jer svakih preostalih 20 sekundi nosi 1 bod više.\n \n<b><i>VRIJEME</i></b>\nKada
+        se pogodi svih 5 riječi vrijeme stane, pritiskom na gumb \"DALJE\", zbroje se bonus bodovi preostalog vremena sa
+    ukupnim rezultatom.\n\n<b><i>POBJEDNIK</i></b>\nPobjednik je onaj koji prvi dođe do postavljenog rezultata uzimajući u obzir da ekipa 1
+       uvijek prva kreće tako da ekipa 2 uvijek ima šansu za sustizanje <i>\"npr. igra se do 10, ekipa 1 odmah skupi maksimalnih 13 bodova,
+            naravno ekipa 2 će dobiti šansu da ih stigne\"</i>, ako je rezultat jednak, igraju se \"produžeci\", tj. \"zlatni gol\", tko zadnju
+        rundu postigne više bodova, pobjeđuje.</string>
+    <string name="table_name">table_words.db</string>
+    <string name="tvTeam2_text">Team 2</string>
+    <string name="tvTeam2Score_text">0</string>
+    <string name="tvTeam1Score_text">0</string>
+    <string name="tvClock_text">00:00</string>
+    <string name="btnNext_text">Next</string>
+    <string name="ekipa1_pobjeda">Congratulations to team 1 on victory</string>
+    <string name="btnStart_text">Start</string>
+    <string name="etResult_hint">10 &#8212; 60</string>
+    <string name="btnDialogClose_text">Close</string>
+    <string name="btnStartToastMsg">Enter the number between 10 and 60</string>
+    <string name="tvTypeInResult_text">Enter the score you want to play</string>
+    <string name="tvAppName_text">Mr. Pantomime</string>
+    <string name="onBackPressed_text">Exit the game by pressing \"Home\" button!</string>
+    <string name="tvClock_setText">00:00</string>
+    <string name="tvNoteTxt_congzTeam1Text">Congratulations to Team 1 on winning!</string>
+    <string name="tvNoteTxt_congzTeam2Txt">Congratulations to Team 2 on winning!</string>
+    <string name="tvNoteTxt_team2playingTxt">Next up, Team 2</string>
+    <string name="tvNoteTxt_team1playingTxt">Next up, Team 1</string>
+    <string name="pravila2">" <b><i>BODOVANJE</i></b> Svaka pogođena riječ boduje se sa jednim bodom, cilj je što prije         pogoditi tj. pokazati suigračima prikazane riječi, jer svakih preostalih 20 sekundi nosi 1 bod više.   <b><i>VRIJEME</i></b> Kada         se pogodi svih 5 riječi vrijeme stane, pritiskom na gumb \"DALJE\", zbroje se bonus bodovi preostalog vremena sa     ukupnim rezultatom.  <b><i>POBJEDNIK</i></b> Pobjednik je onaj koji prvi dođe do postavljenog rezultata uzimajući u obzir da ekipa 1        uvijek prva kreće tako da ekipa 2 uvijek ima šansu za sustizanje <i>\"npr. igra se do 10, ekipa 1 odmah skupi maksimalnih 13 bodova,             naravno ekipa 2 će dobiti šansu da ih stigne\"</i>, ako je rezultat jednak, igraju se \"produžeci\", tj. zlatni gol, tko zadnju         rundu postigne više bodova, pobjeđuje.  <i>p.s. dok ovo čitate vrijeme vam teče</i> "</string>
+
+</resources>
