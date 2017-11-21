@@ -2,15 +2,10 @@
     <string name="app_name">Mr.Pantomime</string>
     <string name="pravila_igre"><b><i>PRAVILA IGRE</i></b></string>
     <string name="chk_text">text</string>
-    <string name="tvTeam1_text">Ekipa 1</string>
-    <string name="pravila1">\n<b><i>BODOVANJE</i></b>\nSvaka pogođena riječ boduje se sa jednim bodom, cilj je što prije
-        pogoditi tj. pokazati suigračima prikazane riječi, jer svakih preostalih 20 sekundi nosi 1 bod više.\n \n<b><i>VRIJEME</i></b>\nKada
-        se pogodi svih 5 riječi vrijeme stane, pritiskom na gumb \"DALJE\", zbroje se bonus bodovi preostalog vremena sa
-    ukupnim rezultatom.\n\n<b><i>POBJEDNIK</i></b>\nPobjednik je onaj koji prvi dođe do postavljenog rezultata uzimajući u obzir da ekipa 1
-       uvijek prva kreće tako da ekipa 2 uvijek ima šansu za sustizanje <i>\"npr. igra se do 10, ekipa 1 odmah skupi maksimalnih 13 bodova,
-            naravno ekipa 2 će dobiti šansu da ih stigne\"</i>, ako je rezultat jednak, igraju se \"produžeci\", tj. \"zlatni gol\", tko zadnju
-        rundu postigne više bodova, pobjeđuje.</string>
-    <string name="table_name">table_words.db</string>
+    <string name="tvTeam1_text">Team 1</string>
+    <string name="pravila1">\n<b><i>POINTS</i></b>\nFor every word that was guessed correctly you get one point, the goal is to demonstrate your teammates displayed words and them to guess as soon as possible, because each 20 seconds remaining means 1 point more.\n \n<b><i>TIME</i></b>\nWhen all 5 words are guessed correctly timing stops, by pressing the button \"NEXT\", bonus points for the remaining time are being added to the total score.\n\n<b><i>WINNER</i></b>\nThe winner is the one who gets to the selected result first, considering that team 1 always starts first, so team 2 always has a chance for catching up <i>\"eg. the selected result is 10, team 1 gets right at the beginning a maximum of 13 points, so of course team 2 will get the chance to catch up\"</i>, and if the results are equal there will be \"extra - time\", ie. \"golden goal\", who scores more points over the last round, wins.</string>
+    <string name="pravila2">\n<b><i>POINTS</i></b>\nFor every word that was guessed correctly you get one point, the goal is to demonstrate your teammates displayed words and them to guess as soon as possible, because each 20 seconds remaining means 1 point more.\n \n<b><i>TIME</i></b>\nWhen all 5 words are guessed correctly timing stops, by pressing the button \"NEXT\", bonus points for the remaining time are being added to the total score.\n\n<b><i>WINNER</i></b>\nThe winner is the one who gets to the selected result first, considering that team 1 always starts first, so team 2 always has a chance for catching up <i>\"eg. the selected result is 10, team 1 gets right at the beginning a maximum of 13 points, so of course team 2 will get the chance to catch up\"</i>, and if the results are equal there will be \"extra - time\", ie. \"golden goal\", who scores more points over the last round, wins.\n\n<i>p.s. your time is running as you're reading this</i> "</string>
+    <string name="table_name">db_words.db</string>
     <string name="tvTeam2_text">Team 2</string>
     <string name="tvTeam2Score_text">0</string>
     <string name="tvTeam1Score_text">0</string>
@@ -29,6 +24,5 @@
     <string name="tvNoteTxt_congzTeam2Txt">Congratulations to Team 2 on winning!</string>
     <string name="tvNoteTxt_team2playingTxt">Next up, Team 2</string>
     <string name="tvNoteTxt_team1playingTxt">Next up, Team 1</string>
-    <string name="pravila2">" <b><i>BODOVANJE</i></b> Svaka pogođena riječ boduje se sa jednim bodom, cilj je što prije         pogoditi tj. pokazati suigračima prikazane riječi, jer svakih preostalih 20 sekundi nosi 1 bod više.   <b><i>VRIJEME</i></b> Kada         se pogodi svih 5 riječi vrijeme stane, pritiskom na gumb \"DALJE\", zbroje se bonus bodovi preostalog vremena sa     ukupnim rezultatom.  <b><i>POBJEDNIK</i></b> Pobjednik je onaj koji prvi dođe do postavljenog rezultata uzimajući u obzir da ekipa 1        uvijek prva kreće tako da ekipa 2 uvijek ima šansu za sustizanje <i>\"npr. igra se do 10, ekipa 1 odmah skupi maksimalnih 13 bodova,             naravno ekipa 2 će dobiti šansu da ih stigne\"</i>, ako je rezultat jednak, igraju se \"produžeci\", tj. zlatni gol, tko zadnju         rundu postigne više bodova, pobjeđuje.  <i>p.s. dok ovo čitate vrijeme vam teče</i> "</string>
 
 </resources>
