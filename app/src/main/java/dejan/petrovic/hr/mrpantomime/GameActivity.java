@@ -284,7 +284,7 @@ public class GameActivity extends AppCompatActivity {
                 (team1Score >= endGameScore && team1Score > team2Score && state == 1)){ // if team 2 fails to get better or equal score, than team 1 wins
             cdTimer.cancel();
             for (CheckBox chk : chkList) {
-                chk.setVisibility(View.GONE);
+                chk.setVisibility(View.INVISIBLE);
             }
             btnNext.setVisibility(View.GONE);
             tvNoteTxt.setVisibility(View.VISIBLE);
@@ -331,7 +331,7 @@ public class GameActivity extends AppCompatActivity {
         nextTeamPlaying = true;
         cdTimer.cancel();
         for (CheckBox chk : chkList) {
-            chk.setVisibility(View.GONE);
+            chk.setVisibility(View.INVISIBLE);
         }
         if (state == 0) {
             tvNoteTxt.setText(R.string.tvNoteTxt_team2playingTxt);
