@@ -20,6 +20,7 @@ import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 import dejan.petrovic.hr.mrpantomime.database.DbAccess;
+import dejan.petrovic.hr.mrpantomime.dialogs.InfoDialog;
 import dejan.petrovic.hr.mrpantomime.util.CountDownTimerPausable;
 
 public class GameActivity extends AppCompatActivity {
@@ -398,27 +399,11 @@ public class GameActivity extends AppCompatActivity {
         btnInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                infoShowDialog();
+                InfoDialog infoDialog = new InfoDialog(getResources().getString(R.string.pravila2));
+                infoDialog.show(getFragmentManager(),"tag");
             }
         });
     }
 
-    /**
-     * Creates game info dialog with the description of the game
-     */
-    private void infoShowDialog() {
-        AlertDialog.Builder dialog = new AlertDialog.Builder(GameActivity.this);
-        dialog.setTitle(GameActivity.this.getResources().getString(R.string.pravila_igre));
-        dialog.setMessage(R.string.pravila2);
-        dialog.setNegativeButton(R.string.btnDialogClose_text, null);
-        dialog.setIcon(R.mipmap.ic_launcher);
-        AlertDialog dlg = dialog.show();
-        WindowManager.LayoutParams lp = dlg.getWindow().getAttributes();
-        lp.dimAmount = 0.8F;
-        dlg.getWindow().setAttributes(lp);
-        dlg.getWindow().setBackgroundDrawableResource(R.color.transparent);
-        dlg.getButton(DialogInterface.BUTTON_NEGATIVE).setTextSize(17);
-        dlg.getButton(DialogInterface.BUTTON_NEGATIVE).setTextColor(getResources().getColor(R.color.orange));
-    }
 }
 

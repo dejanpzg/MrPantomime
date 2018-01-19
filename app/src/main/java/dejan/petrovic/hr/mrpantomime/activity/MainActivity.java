@@ -13,6 +13,8 @@ import android.widget.Toast;
 
 import com.example.dejan.mrpantomime.R;
 
+import dejan.petrovic.hr.mrpantomime.dialogs.InfoDialog;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -38,25 +40,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Creates game info dialog with the description of the game
-     */
-    private void showInfoDialog() {
-        AlertDialog.Builder dialog = new AlertDialog.Builder(MainActivity.this);
-        dialog.setTitle(MainActivity.this.getResources().getString(R.string.pravila_igre));
-        dialog.setMessage(R.string.pravila1);
-        dialog.setNegativeButton(R.string.btnDialogClose_text, null);
-        dialog.setIcon(R.mipmap.ic_launcher);
-        AlertDialog dlg = dialog.show();
-        WindowManager.LayoutParams lp = dlg.getWindow().getAttributes();
-        lp.dimAmount = 0.8F;
-        dlg.getWindow().setAttributes(lp);
-        dlg.getWindow().setBackgroundDrawableResource(R.color.transparent);
-        dlg.getButton(DialogInterface.BUTTON_NEGATIVE).setTextSize(17);
-        dlg.getButton(DialogInterface.BUTTON_NEGATIVE).setTextColor(getResources().getColor(R.color.orange));
-
-    }
-
-    /**
      * Creates setOnClickListener for Button btnInfo
      * and on click shows the infoDialog
      */
@@ -65,7 +48,8 @@ public class MainActivity extends AppCompatActivity {
         btnInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showInfoDialog();
+                InfoDialog infoDialog = new InfoDialog(getResources().getString(R.string.pravila1));
+                infoDialog.show(getFragmentManager(), "tag");
             }
         });
     }
