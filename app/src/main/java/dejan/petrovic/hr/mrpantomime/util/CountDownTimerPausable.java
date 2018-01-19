@@ -16,7 +16,7 @@
 
 // Adapted from Android's CountDownTimer class
 
-package dejan.petrovic.hr.mrpantomime;
+package dejan.petrovic.hr.mrpantomime.util;
 
 import android.annotation.SuppressLint;
 import android.os.Handler;
@@ -74,7 +74,7 @@ public abstract class CountDownTimerPausable {
      *                          {#onTick(millisUntilFinished)} callbacks
      * @param runAtStart        True if timer should start running, false if not
      */
-    public CountDownTimerPausable(long millisOnTimer, long countDownInterval, boolean runAtStart) {
+    protected CountDownTimerPausable(long millisOnTimer, long countDownInterval, boolean runAtStart) {
         mMillisInFuture = millisOnTimer;
         mTotalCountdown = mMillisInFuture;
         mCountdownInterval = countDownInterval;
@@ -141,7 +141,7 @@ public abstract class CountDownTimerPausable {
      *
      * @return true if the timer is currently running, false otherwise.
      */
-    public boolean isRunning() {
+    private boolean isRunning() {
         return (!isPaused());
     }
 
@@ -150,7 +150,7 @@ public abstract class CountDownTimerPausable {
      *
      * @return number of milliseconds remaining until the timer is finished
      */
-    public long timeLeft() {
+    private long timeLeft() {
         long millisUntilFinished;
         if (isPaused()) {
             millisUntilFinished = mPauseTimeRemaining;

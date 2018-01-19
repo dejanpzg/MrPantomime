@@ -1,4 +1,4 @@
-package dejan.petrovic.hr.mrpantomime;
+package dejan.petrovic.hr.mrpantomime.activity;
 
 import android.content.DialogInterface;
 import android.content.Intent;

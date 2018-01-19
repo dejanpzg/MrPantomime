@@ -1,4 +1,4 @@
-package dejan.petrovic.hr.mrpantomime;
+package dejan.petrovic.hr.mrpantomime.database;
 
 /*
  * Created by Dejan on 24-Apr-17.
@@ -14,7 +14,7 @@ import com.example.dejan.mrpantomime.R;
 import java.util.ArrayList;
 import java.util.List;
 
-class DbAccess {
+public class DbAccess {
     private SQLiteOpenHelper openHelper;
     private SQLiteDatabase database;
     private static DbAccess instance;
@@ -33,7 +33,7 @@ class DbAccess {
      * @param context the Context
      * @return the instance of DabaseAccess
      */
-    static DbAccess getInstance(Context context) {
+    public static DbAccess getInstance(Context context) {
         if (instance == null) {
             instance = new DbAccess(context);
         }
@@ -43,14 +43,14 @@ class DbAccess {
     /**
      * Open the database connection.
      */
-    void open() {
+    public void open() {
         this.database = openHelper.getWritableDatabase();
     }
 
     /**
      * Close the database connection.
      */
-    void close() {
+    public void close() {
         if (database != null) {
             this.database.close();
         }
@@ -61,7 +61,7 @@ class DbAccess {
      *
      * @return a List of words
      */
-    List<String> getWords() {
+    public List<String> getWords() {
         List<String> list = new ArrayList<>();
         Cursor cursor = database.rawQuery("SELECT * FROM words", null);
         cursor.moveToFirst();

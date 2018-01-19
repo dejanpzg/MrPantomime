@@ -1,4 +1,4 @@
-package dejan.petrovic.hr.mrpantomime;
+package dejan.petrovic.hr.mrpantomime.database;
 
 /*
  * Created by Dejan on 24-Apr-17.

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:keepScreenOn="true"
     android:background="@color/colorPrimaryDark"
-    tools:context="dejan.petrovic.hr.mrpantomime.GameActivity">
+    tools:context="dejan.petrovic.hr.mrpantomime.activity.GameActivity">
 
     <Button
         android:id="@+id/btnHome"

@@ -1,4 +1,4 @@
-package dejan.petrovic.hr.mrpantomime;
+package dejan.petrovic.hr.mrpantomime.activity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -19,19 +19,21 @@ import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
+import dejan.petrovic.hr.mrpantomime.database.DbAccess;
+import dejan.petrovic.hr.mrpantomime.util.CountDownTimerPausable;
+
 public class GameActivity extends AppCompatActivity {
 
     // TODO rijesit warninge
 
-    private TextView tvScoreTeam1, tvScoreTeam2, tvNoteTxt;
     private CountDownTimerPausable cdTimer;
     private long countDowntimeLeft; // shows time left in milliseconds
-    boolean nextTeamPlaying = false;
+    private boolean nextTeamPlaying = false;
     private CheckBox[] chkList; // List that contains all declared CheckBoxes
-    int team1Score = 0; // Score for team 1
-    int team2Score = 0; // Score for team 2
-    int state = 0;  // If state = 0 Team 1 is playing, if state = 1 Team 2 is playing.
-    private static List<String> wordsList;
+    private int team1Score = 0; // Score for team 1
+    private int team2Score = 0; // Score for team 2
+    private int state = 0;  // If state = 0 Team 1 is playing, if state = 1 Team 2 is playing.
+    private List<String> wordsList;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -191,9 +193,6 @@ public class GameActivity extends AppCompatActivity {
         CheckBox chk3 = (CheckBox) findViewById(R.id.chk3);
         CheckBox chk4 = (CheckBox) findViewById(R.id.chk4);
         CheckBox chk5 = (CheckBox) findViewById(R.id.chk5);
-        tvScoreTeam1 = (TextView) findViewById(R.id.tvTeam1Score);
-        tvScoreTeam2 = (TextView) findViewById(R.id.tvTeam2Score);
-        tvNoteTxt = (TextView) findViewById(R.id.tvNoteTxt);
         chkList = new CheckBox[]{chk1, chk2, chk3, chk4, chk5};
     }
 
@@ -237,6 +236,8 @@ public class GameActivity extends AppCompatActivity {
      * Sets score to tvScoreTeam1 and tvScoreTeam2 TextViews
      */
     private void setTextScore() {
+        TextView tvScoreTeam1 = (TextView)findViewById(R.id.tvTeam1Score);
+        TextView tvScoreTeam2 = (TextView) findViewById(R.id.tvTeam2Score);
         tvScoreTeam1.setText(String.valueOf(team1Score));
         tvScoreTeam2.setText(String.valueOf(team2Score));
     }
@@ -244,11 +245,12 @@ public class GameActivity extends AppCompatActivity {
     /**
      * Creates ContDownTimerWithPause ands sets minutes and seconds
      */
-    private CountDownTimerPausable cdTimer() {
-        final TextView tvClock = (TextView) findViewById(R.id.tvClock);
+    public CountDownTimerPausable cdTimer() {
         cdTimer = new CountDownTimerPausable(181000, 1000, true) {
+            TextView tvClock = (TextView) findViewById(R.id.tvClock);
             @Override
             public void onTick(long millisUntilFinished) {
+
                 long minutes = TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished);
                 long seconds = TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) -
                         TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished));
@@ -275,6 +277,7 @@ public class GameActivity extends AppCompatActivity {
         int endGameScore = mainActivity.getEndGameScore();
         int maxScorePerRound = 13;
         Button btnNext = (Button) findViewById(R.id.btnNext);
+        TextView tvNoteTxt = (TextView) findViewById(R.id.tvNoteTxt);
 
         // Since team 1 is playing first we need to give team 2 a chance to get higher score or equal to team 1,
         // lets say they play to 10 and team 1 is first to play as always, team 1 gathers at start maxScorePerRound
@@ -328,6 +331,7 @@ public class GameActivity extends AppCompatActivity {
      * Hides all CheckBoxes and shows the nextTeamPlaying text when other team is next playing
      */
     private void nextTeamPlaying() {
+        TextView tvNoteTxt = (TextView) findViewById(R.id.tvNoteTxt);
         nextTeamPlaying = true;
         cdTimer.cancel();
         for (CheckBox chk : chkList) {
@@ -347,6 +351,8 @@ public class GameActivity extends AppCompatActivity {
     private void ekipa1TxtHighlighted() {
         TextView tvTeam2 = (TextView) findViewById(R.id.tvTeam2);
         TextView tvTeam1 = (TextView) findViewById(R.id.tvTeam1);
+        TextView tvScoreTeam1 = (TextView)findViewById(R.id.tvTeam1Score);
+        TextView tvScoreTeam2 = (TextView) findViewById(R.id.tvTeam2Score);
 
         tvScoreTeam1.setTextColor(getResources().getColor(R.color.orange));
         tvTeam1.setTextColor(getResources().getColor(R.color.orange));
@@ -360,6 +366,8 @@ public class GameActivity extends AppCompatActivity {
     private void ekipa2TxtHighlighted() {
         TextView tvTeam2 = (TextView) findViewById(R.id.tvTeam2);
         TextView tvTeam1 = (TextView) findViewById(R.id.tvTeam1);
+        TextView tvScoreTeam1 = (TextView)findViewById(R.id.tvTeam1Score);
+        TextView tvScoreTeam2 = (TextView) findViewById(R.id.tvTeam2Score);
 
         tvScoreTeam2.setTextColor(getResources().getColor(R.color.orange));
         tvTeam2.setTextColor(getResources().getColor(R.color.orange));
@@ -372,6 +380,7 @@ public class GameActivity extends AppCompatActivity {
      *
      */
     private void continuePlaying() {
+        TextView tvNoteTxt = (TextView) findViewById(R.id.tvNoteTxt);
         cdTimer.create();
         tvNoteTxt.setVisibility(View.GONE);
         for (int i = 0; i < 5; i++) {

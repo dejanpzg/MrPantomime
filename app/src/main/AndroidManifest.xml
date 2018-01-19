@@ -11,10 +11,10 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"
         android:supportsRtl="true">
         <activity
-            android:name="dejan.petrovic.hr.mrpantomime.GameActivity"
+            android:name="dejan.petrovic.hr.mrpantomime.activity.GameActivity"
             android:screenOrientation="portrait"/>
         <activity
-            android:name="dejan.petrovic.hr.mrpantomime.MainActivity"
+            android:name="dejan.petrovic.hr.mrpantomime.activity.MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
