@@ -27,7 +27,7 @@
         android:id="@+id/btnInfo"
         android:layout_width="@dimen/btnInfo_layoutWidth"
         android:layout_height="@dimen/btnInfo_layoutHeight"
-        android:background="@drawable/ic_action_name3"
+        android:background="@drawable/ic_action_btninfo"
         android:layout_marginTop="@dimen/btnInfo_layoutMarginTop"
         android:layout_marginBottom="@dimen/btnInfo_layoutMarginBottom"
         android:layout_marginStart="@dimen/btnInfo_layoutMarginStart"

@@ -1,12 +1,9 @@
 package dejan.petrovic.hr.mrpantomime.activity;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
@@ -19,13 +16,15 @@ import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import dejan.petrovic.hr.mrpantomime.database.DbAccess;
 import dejan.petrovic.hr.mrpantomime.dialogs.InfoDialog;
+import dejan.petrovic.hr.mrpantomime.dialogs.ReturnHomeDialog;
+import dejan.petrovic.hr.mrpantomime.interfaces.HomeDialogBtnListener;
 import dejan.petrovic.hr.mrpantomime.util.CountDownTimerPausable;
 
-public class GameActivity extends AppCompatActivity {
-
-    // TODO rijesit warninge
+public class GameActivity extends AppCompatActivity implements HomeDialogBtnListener {
 
     private CountDownTimerPausable cdTimer;
     private long countDowntimeLeft; // shows time left in milliseconds
@@ -41,12 +40,12 @@ public class GameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
+        ButterKnife.bind(this);
+
         initWidgets();
         cdTimer().create();
         getWordsFromDbToArray();
         getRandomWordsFromArray();
-        btnNextListener();
-        btnInfoShowDialog();
         onClickCheckBoxHandler();
 
     }
@@ -91,6 +90,57 @@ public class GameActivity extends AppCompatActivity {
     }
 
     /**
+     * if btnHome pressed, opens ReturnHomeDialog
+     */
+    @OnClick(R.id.btnHome)
+    void btnHome() {
+        ReturnHomeDialog returnHomeDialog = new ReturnHomeDialog();
+        returnHomeDialog.setListener(this);
+        returnHomeDialog.show(getFragmentManager(), "tag");
+    }
+
+    /**
+     * Creates the btnNext Listener and listens for click
+     * if clicked first shows the nextTeamPlaying text
+     * then if clicked again checks which team is playing changes the text color
+     * and calls the method continuePlaying
+     */
+    @OnClick(R.id.btnNext)
+    void btnNext() {
+        if (nextTeamPlaying) {
+            if (state == 0) {
+                ekipa2TxtHighlighted();
+                state = 1;
+            } else {
+                ekipa1TxtHighlighted();
+                state = 0;
+            }
+            nextTeamPlaying = false;
+            getRandomWordsFromArray();
+            continuePlaying();
+            return;
+        }
+        ekipa1ScoreCounter();
+        setTextScore();
+        // Checks if someone has enough points to win if no moves to other team
+        if (winnerDeclare()) {
+            return;
+        }
+        nextTeamPlaying();
+
+    }
+
+    /**
+     * Creates setOnClickListener for Button btnInfo
+     * and on click shows the infoDialog
+     */
+    @OnClick(R.id.btnInfo)
+    void btnInfo() {
+        InfoDialog infoDialog = new InfoDialog(getResources().getString(R.string.pravila2));
+        infoDialog.show(getFragmentManager(), "tag");
+    }
+
+    /**
      * Creates CheckBox setOnClickListeners for every CheckBox
      * from CheckBox list (chkList)
      */
@@ -109,41 +159,6 @@ public class GameActivity extends AppCompatActivity {
                 }
             });
         }
-    }
-
-    /**
-     * Creates the btnNext Listener and listens for click
-     * if clicked first shows the nextTeamPlaying text
-     * then if clicked again checks which team is playing changes the text color
-     * and calls the method continuePlaying
-     */
-    public void btnNextListener() {
-        Button btnNext = (Button) findViewById(R.id.btnNext);
-        btnNext.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (nextTeamPlaying) {
-                    if (state == 0) {
-                        ekipa2TxtHighlighted();
-                        state = 1;
-                    } else {
-                        ekipa1TxtHighlighted();
-                        state = 0;
-                    }
-                    nextTeamPlaying = false;
-                    getRandomWordsFromArray();
-                    continuePlaying();
-                    return;
-                }
-                ekipa1ScoreCounter();
-                setTextScore();
-                // Checks if someone has enough points to win if no moves to other team
-                if (winnerDeclare()) {
-                    return;
-                }
-                nextTeamPlaying();
-            }
-        });
     }
 
     /**
@@ -225,19 +240,10 @@ public class GameActivity extends AppCompatActivity {
     }
 
     /**
-     * if btnHome pressed, goes to MainActivity
-     */
-    public void goToMainActivity(View view) {
-        finish();
-        cdTimer.cancel();
-        startActivity(new Intent(this, MainActivity.class));
-    }
-
-    /**
      * Sets score to tvScoreTeam1 and tvScoreTeam2 TextViews
      */
     private void setTextScore() {
-        TextView tvScoreTeam1 = (TextView)findViewById(R.id.tvTeam1Score);
+        TextView tvScoreTeam1 = (TextView) findViewById(R.id.tvTeam1Score);
         TextView tvScoreTeam2 = (TextView) findViewById(R.id.tvTeam2Score);
         tvScoreTeam1.setText(String.valueOf(team1Score));
         tvScoreTeam2.setText(String.valueOf(team2Score));
@@ -249,6 +255,7 @@ public class GameActivity extends AppCompatActivity {
     public CountDownTimerPausable cdTimer() {
         cdTimer = new CountDownTimerPausable(181000, 1000, true) {
             TextView tvClock = (TextView) findViewById(R.id.tvClock);
+
             @Override
             public void onTick(long millisUntilFinished) {
 
@@ -285,7 +292,7 @@ public class GameActivity extends AppCompatActivity {
         // than team 1 would win without giving team 2 a chance to play and get better or equal score.
         if ((team1Score >= endGameScore && team2Score < team1Score - maxScorePerRound && state == 0) ||
                 (team2Score >= endGameScore && team2Score > team1Score) || // team 2 is playing last in the round so if they win, team 1 had their chance
-                (team1Score >= endGameScore && team1Score > team2Score && state == 1)){ // if team 2 fails to get better or equal score, than team 1 wins
+                (team1Score >= endGameScore && team1Score > team2Score && state == 1)) { // if team 2 fails to get better or equal score, than team 1 wins
             cdTimer.cancel();
             for (CheckBox chk : chkList) {
                 chk.setVisibility(View.INVISIBLE);
@@ -352,7 +359,7 @@ public class GameActivity extends AppCompatActivity {
     private void ekipa1TxtHighlighted() {
         TextView tvTeam2 = (TextView) findViewById(R.id.tvTeam2);
         TextView tvTeam1 = (TextView) findViewById(R.id.tvTeam1);
-        TextView tvScoreTeam1 = (TextView)findViewById(R.id.tvTeam1Score);
+        TextView tvScoreTeam1 = (TextView) findViewById(R.id.tvTeam1Score);
         TextView tvScoreTeam2 = (TextView) findViewById(R.id.tvTeam2Score);
 
         tvScoreTeam1.setTextColor(getResources().getColor(R.color.orange));
@@ -367,7 +374,7 @@ public class GameActivity extends AppCompatActivity {
     private void ekipa2TxtHighlighted() {
         TextView tvTeam2 = (TextView) findViewById(R.id.tvTeam2);
         TextView tvTeam1 = (TextView) findViewById(R.id.tvTeam1);
-        TextView tvScoreTeam1 = (TextView)findViewById(R.id.tvTeam1Score);
+        TextView tvScoreTeam1 = (TextView) findViewById(R.id.tvTeam1Score);
         TextView tvScoreTeam2 = (TextView) findViewById(R.id.tvTeam2Score);
 
         tvScoreTeam2.setTextColor(getResources().getColor(R.color.orange));
@@ -378,7 +385,6 @@ public class GameActivity extends AppCompatActivity {
 
     /**
      * Starts the {@link #cdTimer} shows the CheckBoxes and makes them unchecked
-     *
      */
     private void continuePlaying() {
         TextView tvNoteTxt = (TextView) findViewById(R.id.tvNoteTxt);
@@ -390,20 +396,11 @@ public class GameActivity extends AppCompatActivity {
         }
     }
 
-    /**
-     * Creates setOnClickListener for Button btnInfo
-     * and on click shows the infoDialog
-     */
-    private void btnInfoShowDialog() {
-        Button btnInfo = (Button) findViewById(R.id.btnInfo);
-        btnInfo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                InfoDialog infoDialog = new InfoDialog(getResources().getString(R.string.pravila2));
-                infoDialog.show(getFragmentManager(),"tag");
-            }
-        });
+    @Override
+    public void positiveBtnListener() {
+        finish();
+        cdTimer.cancel();
+        startActivity(new Intent(this, MainActivity.class));
     }
-
 }
 
