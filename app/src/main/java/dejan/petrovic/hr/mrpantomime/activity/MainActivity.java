@@ -14,7 +14,7 @@ import dejan.petrovic.hr.mrpantomime.dialogs.InfoDialog;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static int endGameScore;
+    private int endGameScore;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -54,7 +54,9 @@ public class MainActivity extends AppCompatActivity {
             if (!etEndGameScore.getText().toString().isEmpty()) {
                 endGameScore = Integer.parseInt(etEndGameScore.getText().toString());
                 if (endGameScore >= 10 && endGameScore <= 60) {
-                    startActivity(new Intent(MainActivity.this, GameActivity.class));
+                    Intent intent = new Intent(MainActivity.this, GameActivity.class);
+                    intent.putExtra("EndGameScore", endGameScore);
+                    startActivity(intent);
                 } else {
                     Toast.makeText(MainActivity.this, R.string.btnStartToastMsg, Toast.LENGTH_LONG).show();
                 }
@@ -65,10 +67,6 @@ public class MainActivity extends AppCompatActivity {
         } catch (Exception e) {
             Toast.makeText(MainActivity.this, R.string.btnStartToastMsg, Toast.LENGTH_LONG).show();
         }
-    }
-
-    public int getEndGameScore() {
-        return endGameScore;
     }
 
 }

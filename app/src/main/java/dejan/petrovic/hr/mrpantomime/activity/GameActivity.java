@@ -29,6 +29,7 @@ public class GameActivity extends AppCompatActivity implements HomeDialogBtnList
     private CountDownTimerPausable cdTimer;
     private long countDowntimeLeft; // shows time left in milliseconds
     private boolean nextTeamPlaying = false;
+    int endGameScore;
     private CheckBox[] chkList; // List that contains all declared CheckBoxes
     private int team1Score = 0; // Score for team 1
     private int team2Score = 0; // Score for team 2
@@ -43,6 +44,7 @@ public class GameActivity extends AppCompatActivity implements HomeDialogBtnList
         ButterKnife.bind(this);
 
         initWidgets();
+        getIntentExtra();
         cdTimer().create();
         getWordsFromDbToArray();
         getRandomWordsFromArray();
@@ -138,6 +140,16 @@ public class GameActivity extends AppCompatActivity implements HomeDialogBtnList
     void btnInfo() {
         InfoDialog infoDialog = new InfoDialog(getResources().getString(R.string.pravila2));
         infoDialog.show(getFragmentManager(), "tag");
+    }
+
+    /**
+     * Receives the IntentExtra value, and assigns to endGameScore variable
+     */
+    private void getIntentExtra(){
+        Intent intent = getIntent();
+        if(intent.hasExtra("EndGameScore")){
+            endGameScore = intent.getIntExtra("EndGameScore", 40);
+        }
     }
 
     /**
@@ -281,8 +293,6 @@ public class GameActivity extends AppCompatActivity implements HomeDialogBtnList
      * and declares the winner
      */
     private boolean winnerDeclare() {
-        MainActivity mainActivity = new MainActivity();
-        int endGameScore = mainActivity.getEndGameScore();
         int maxScorePerRound = 13;
         Button btnNext = (Button) findViewById(R.id.btnNext);
         TextView tvNoteTxt = (TextView) findViewById(R.id.tvNoteTxt);
